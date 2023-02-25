@@ -1,0 +1,27 @@
+.signup__image--container {
+  background-image: url(https://images.pexels.com/photos/8926943/pexels-photo-8926943.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  height: 90vh;
+  background-size: cover;
+}
+
+.signup__from-container,
+.login__from-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+}
+
+.login__image--container {
+  background-image: url(https://images.pexels.com/photos/11062704/pexels-photo-11062704.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  height: 90vh;
+  background-size: cover;
+}
+
+@media screen and (max-width: 756px) {
+  .login__image--container,
+  .signup__image--container {
+    display: none;
+  }
+}
