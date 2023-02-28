@@ -3,6 +3,7 @@ import { Alert, Col, Container, Row, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useCreateProductMutation } from "../services/appApi";
+import axios from "../axios";
 import "./CreateProduct.css";
 
 function NewProduct() {
@@ -24,7 +25,7 @@ function NewProduct() {
         uploadPreset: "xb2f8ysg",
       },
       (error, result) => {
-        if (!error && result && result.event === "success") {
+        if (!error && result.event === "success") {
           setPictures((prev) => [
             ...prev,
             { url: result.info.url, public_id: result.info.public_id },
@@ -35,15 +36,47 @@ function NewProduct() {
     widget.open();
   }
 
-  function handleRemoveImg() {}
+  function handleRemoveImg(imgObject) {
+    setImgToRemove(imgObject.public_id);
+    axios
+      .delete(`/images/${imgObject.public_id}/`)
+      .then((res) => {
+        setImgToRemove(null);
+        setPictures((prev) =>
+          prev.filter((img) => img.public_id !== imgObject.public_id)
+        );
+      })
+      .catch((e) => console.log(e));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!name || !description || !price || !category || !pictures.length) {
+      return alert("Please fill out all the fields");
+    } else {
+      createProduct({ name, description, price, category, pictures }).then(
+        ({ data }) => {
+          if (data.length > 0) {
+            setTimeout(() => {
+              navigate("/");
+            }, 1500);
+          }
+        }
+      );
+      console.log("product Created successfully");
+      alert("product Created successfully");
+    }
+  }
 
   return (
     <Container>
       <Row>
         <Col md={6} className="new-product__form--container">
-          <Form style={{ width: "100%" }}>
-            <h1>Create product</h1>
-            {isSuccess && <Alert variant="success">Product created!</Alert>}
+          <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
+            <h1 className="mt-4">Create product</h1>
+            {isSuccess && (
+              <Alert variant="success">Product created with succcess</Alert>
+            )}
             {isError && <Alert variant="danger">{error.data}</Alert>}
             <Form.Group className="mb-3">
               <Form.Label>Product name</Form.Label>
@@ -72,7 +105,7 @@ function NewProduct() {
               <Form.Label>Product price($)</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="Enter product price"
+                placeholder="Price($)"
                 value={price}
                 required
                 onChange={(e) => setPrice(e.target.value)}
@@ -92,13 +125,6 @@ function NewProduct() {
                 <option value="Road-Bike">Road-Bike</option>
                 <option value="Ride-Bike">Ride-Bike</option>
               </Form.Select>
-              <Form.Control
-                type="password"
-                placeholder="Enter password"
-                value={password}
-                required
-                onChange={(e) => setPassword(e.target.value)}
-              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Button type="button" onClick={showWidget}>
@@ -108,10 +134,12 @@ function NewProduct() {
                 {pictures.map((image) => (
                   <div className="image-preview">
                     <img src={image.url} />
-                    <i
-                      className="fa fa-times-circle"
-                      onClick={() => handleRemoveImg(image)}
-                    ></i>
+                    {imgToRemove !== image.public_id && (
+                      <i
+                        className="fa fa-times-circle"
+                        onClick={() => handleRemoveImg(image)}
+                      ></i>
+                    )}
                   </div>
                 ))}
               </div>

@@ -19,7 +19,7 @@ function NavigationBar() {
   }
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand>Bike Store e-commerce</Navbar.Brand>

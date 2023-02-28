@@ -30,3 +30,10 @@
 .image-preview i:hover {
   color: hsl(271, 69%, 50%);
 }
+
+.new-product__image--container {
+  background-image: url(https://images.unsplash.com/photo-1530173235220-f6825c107a77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
