@@ -1,0 +1,16 @@
+.linkContainer {
+  cursor: pointer;
+  width: 13rem;
+  margin: 10px;
+  background-color: rgb(141, 140, 140);
+}
+
+.cardTop {
+  width: 20rem;
+  margin: 10px;
+}
+
+.product-preview-img {
+  height: 180px;
+  object-fit: cover;
+}
