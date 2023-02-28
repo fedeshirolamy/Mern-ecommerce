@@ -3,6 +3,11 @@
   width: 13rem;
   margin: 10px;
   background-color: rgb(141, 140, 140);
+  transition: all 0.6s;
+}
+
+.linkContainer:hover {
+  transform: scale(1.05);
 }
 
 .cardTop {
