@@ -27,6 +27,20 @@ export const appApi = createApi({
         method: "POST",
       }),
     }),
+    addToCart: builder.mutation({
+      query: (cartInfo) => ({
+        url: "/products/add-to-cart",
+        body: cartInfo,
+        method: "POST",
+      }),
+    }),
+    removeFromCart: builder.mutation({
+      query: (body) => ({
+        url: "/products/remove-from-cart",
+        body,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 

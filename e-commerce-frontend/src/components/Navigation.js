@@ -7,6 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../features/userSlice";
+import CartPage from "../pages/CartPage";
 import "./Navigation.css";
 
 function NavigationBar() {
@@ -31,6 +32,18 @@ function NavigationBar() {
             {!user && (
               <LinkContainer to="/login">
                 <Nav.Link>Login</Nav.Link>
+              </LinkContainer>
+            )}
+            {user && !user.isAdmin && (
+              <LinkContainer to="/cart">
+                <Nav.Link>
+                  <i className="fas fa-shopping-cart"></i>
+                  {user?.cart.count > 0 && (
+                    <span className="badge badge-warning" if="cartcount">
+                      {user.cart.count}
+                    </span>
+                  )}
+                </Nav.Link>
               </LinkContainer>
             )}
 
