@@ -121,9 +121,9 @@ function NewProduct() {
                 <option disabled selected>
                   -- Select One --
                 </option>
-                <option value="Mountain-Bike">Mountain-Bike</option>
-                <option value="Road-Bike">Road-Bike</option>
-                <option value="Ride-Bike">Ride-Bike</option>
+                <option value="mountain-bike">Mountain-Bike</option>
+                <option value="road-bike">Road-Bike</option>
+                <option value="ride-bike">Ride-Bike</option>
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3">
