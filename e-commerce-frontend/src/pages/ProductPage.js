@@ -17,12 +17,14 @@ import Loading from "../components/Loading";
 import SimilarProduct from "../components/SimilarProduct";
 import "./ProductPage.css";
 import { LinkContainer } from "react-router-bootstrap";
+import { useAddToCartMutation } from "../services/appApi";
 
 function ProductPage() {
   const { id } = useParams();
   const user = useSelector((state) => state.user);
   const [product, setProduct] = useState(null);
   const [similar, setSimilar] = useState(null);
+  const [addToCart, { isSuccess }] = useAddToCartMutation();
 
   const handleDragStart = (e) => {
     e.preventDefault();
