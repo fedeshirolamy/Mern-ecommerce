@@ -10,6 +10,7 @@ import {
   Container,
   Form,
   Row,
+  Toast,
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -18,6 +19,7 @@ import SimilarProduct from "../components/SimilarProduct";
 import "./ProductPage.css";
 import { LinkContainer } from "react-router-bootstrap";
 import { useAddToCartMutation } from "../services/appApi";
+import ToastMessage from "../components/ToastMessage";
 
 function ProductPage() {
   const { id } = useParams();
@@ -94,7 +96,18 @@ function ProductPage() {
                 <option value="3">3</option>
                 <option value="4">4</option>
               </Form.Select>
-              <Button size="lg" variant="secondary">
+              <Button
+                size="lg"
+                onClick={() =>
+                  addToCart({
+                    userId: user._id,
+                    productId: id,
+                    price: product.price,
+                    image: product.pictures[0].url,
+                  })
+                }
+                variant="secondary"
+              >
                 Add to cart
               </Button>
             </ButtonGroup>
@@ -103,6 +116,13 @@ function ProductPage() {
             <LinkContainer to={`/product/${product._id}/edit`}>
               <Button size="lg">Edit Product</Button>
             </LinkContainer>
+          )}
+          {isSuccess && (
+            <ToastMessage
+              bg="info"
+              title="Added to cart"
+              body={`${product.name} is in your cart`}
+            />
           )}
         </Col>
       </Row>

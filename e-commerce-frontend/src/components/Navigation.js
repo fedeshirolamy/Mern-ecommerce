@@ -34,6 +34,7 @@ function NavigationBar() {
                 <Nav.Link>Login</Nav.Link>
               </LinkContainer>
             )}
+            {/* si hay usuario pero no es el admin */}
             {user && !user.isAdmin && (
               <LinkContainer to="/cart">
                 <Nav.Link>
