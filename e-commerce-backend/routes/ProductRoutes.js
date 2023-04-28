@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const { name, description, price, category, images: pictures } = req.body;
+    const { name, description, price, category, pictures: pictures } = req.body;
     const product = await Product.findByIdAndUpdate({
       name,
       description,

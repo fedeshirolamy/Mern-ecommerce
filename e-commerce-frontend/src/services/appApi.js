@@ -40,7 +40,7 @@ export const appApi = createApi({
       query: (product) => ({
         url: `/products/${product._id}`,
         body: product,
-        method: "PATH",
+        method: "PATCH",
       }),
     }),
 

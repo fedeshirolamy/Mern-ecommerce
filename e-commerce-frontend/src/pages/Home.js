@@ -19,11 +19,7 @@ function Home() {
   return (
     <div>
       <img
-        src="https://images.pexels.com/photos/9789242/pexels-photo-9789242.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        style={{
-          width: "200vh",
-          height: "50vh",
-        }}
+        src="https://res.cloudinary.com/dvmarheuq/image/upload/v1682618552/qx1jpmq7fsyaps2s8d8i.png"
         className="home-banner"
       />
       <div className="featured-products-container container mt-4">
@@ -47,12 +43,13 @@ function Home() {
         </Link>
       </div>
       {/* sale banner */}
-      <div className="sale_banner--container mt-4">
+      <div className="sale__banner--container mt-4">
         <img
-          src="https://i.ibb.co/F81WxJ6/Dark-Bycycle-Review-Youtube-Thumbnail.png"
-          style={{ width: "1500px" }}
+          src="https://res.cloudinary.com/dvmarheuq/image/upload/v1682615999/sfn0vpwd4qzqb5vvxdcf.png"
+          alt="banner"
         />
       </div>
+
       <div className="recent-products-container container mt-4">
         <h3>Categories</h3>
         <Row>
