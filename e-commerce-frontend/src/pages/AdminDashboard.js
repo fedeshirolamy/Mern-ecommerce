@@ -1,9 +1,9 @@
 import React from "react";
-import axios from "../axios";
 import "./AdminDashboard.css";
 import { Col, Container, Nav, Row, Tab } from "react-bootstrap";
 import DashboardProducts from "../components/DashboardProducts";
 import OrdersAdminPage from "../components/OrdersAdminPage";
+import ClientsAdminPage from "../components/ClientsAdminPage";
 
 function AdminDashboard() {
   return (
@@ -30,6 +30,9 @@ function AdminDashboard() {
               </Tab.Pane>
               <Tab.Pane eventKey="orders">
                 <OrdersAdminPage />
+              </Tab.Pane>
+              <Tab.Pane eventKey="clients">
+                <ClientsAdminPage />
               </Tab.Pane>
             </Tab.Content>
           </Col>

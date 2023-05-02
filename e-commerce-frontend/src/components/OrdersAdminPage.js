@@ -11,6 +11,19 @@ function OrdersAdminPage() {
   const [orderToShow, setOrderToShow] = useState([]);
   const [show, setShow] = useState(false);
 
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("/orders")
+      .then(({ data }) => {
+        setLoading(false);
+        setOrders(data);
+      })
+      .catch((e) => {
+        setLoading(false);
+      });
+  }, []);
+
   const handleClose = () => setShow(false);
 
   function markShipped(orderId, ownerId) {
@@ -32,19 +45,6 @@ function OrdersAdminPage() {
     setShow(true);
     setOrderToShow(productsToShow);
   }
-
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get("/orders")
-      .then(({ data }) => {
-        setLoading(false);
-        setOrders(data);
-      })
-      .catch((e) => {
-        setLoading(false);
-      });
-  }, []);
 
   if (loading) {
     <Loading />;
@@ -92,9 +92,9 @@ function OrdersAdminPage() {
               <td>
                 <span
                   style={{ cursor: "pointer" }}
-                  onClick={() => showOrder(products)}
+                  onClick={() => showOrder(order.products)}
                 >
-                  View order <i className="fa fa-eye"></i>
+                  View order <i className="fa fa-eye" />
                 </span>
               </td>
             </tr>
@@ -106,8 +106,9 @@ function OrdersAdminPage() {
           <Modal.Title>Order details</Modal.Title>
         </Modal.Header>
         {orderToShow.map((order) => (
-          <div className="order-details__container">
+          <div className="order-details__container  d-flex justify-content-around py-2">
             <img
+              alt="producto"
               src={order.pictures[0].url}
               style={{ maxWidth: 100, height: 100, objectFit: "cover" }}
             />

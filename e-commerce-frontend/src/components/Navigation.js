@@ -7,7 +7,6 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../features/userSlice";
-import CartPage from "../pages/CartPage";
 import "./Navigation.css";
 
 function NavigationBar() {

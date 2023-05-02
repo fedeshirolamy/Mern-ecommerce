@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import { Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NewProduct from "./pages/CreateProduct";
 import ProductPage from "./pages/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
@@ -15,9 +15,29 @@ import CartPage from "./pages/CartPage";
 import OrdersPage from "./pages/OrdersPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import EditProduct from "./pages/EditPage";
+import { useEffect } from "react";
+import { io } from "socket.io-client";
+import { addNotification } from "./features/userSlice";
 
 function App() {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const socket = io("ws://localhost:8080");
+    socket.off("notification").on("notification", (msgObj, user_id) => {
+      //logic
+      if (user_id === user._id) {
+        dispatch(addNotification(msgObj));
+      }
+    });
+    socket.off("new-order").on("new-order", (msgObj) => {
+      if (user.isAdmin) {
+        dispatch(addNotification(msgObj));
+      }
+    });
+  }, []);
+
   return (
     <div className="App">
       <BrowserRouter>

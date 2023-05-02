@@ -11,6 +11,14 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     logout: () => initialState,
+    addNotification: (state, action) => {
+      state.notifications.unShift(action.payload);
+    },
+    resetNotifications: (state) => {
+      state.notifications.forEach((obj) => {
+        obj.status = "read";
+      });
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -44,5 +52,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, addNotification, resetNotifications } =
+  userSlice.actions;
 export default userSlice.reducer;
