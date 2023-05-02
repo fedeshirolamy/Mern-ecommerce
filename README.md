@@ -15,7 +15,7 @@ En la misma tenemos la posibilidad de loguearnos como administrador, y como usua
 
 
 ** Home Page **
-![Image text]([https://github.com/fedeshirolamy/PI-Videogames/blob/master/HomePage.png?raw=true](https://github.com/fedeshirolamy/Mern-ecommerce/blob/main/e-commerce-frontend/src/imagenes/home1.png))
+![Image text](https://github.com/fedeshirolamy/Mern-ecommerce/blob/main/e-commerce-frontend/src/imagenes/home1.png?raw=true)
 
 
 
